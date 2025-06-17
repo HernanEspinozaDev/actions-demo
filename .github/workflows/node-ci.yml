@@ -1,0 +1,36 @@
+# Nombre que aparecerá en la pestaña "Actions" de GitHub
+name: Node.js CI
+
+# Eventos que disparan el workflow
+on:
+  push:
+    [cite_start]branches: [ main ] # Se ejecuta al hacer push a la rama main 
+  pull_request:
+    [cite_start]branches: [ main ] # Y también al crear un pull request a main 
+
+# Lista de trabajos a ejecutar
+jobs:
+  # Nombre de nuestro único job
+  build-and-test:
+    # Máquina virtual donde se ejecutará
+    [cite_start]runs-on: ubuntu-latest # 
+
+    # Pasos que se ejecutarán secuencialmente
+    steps:
+      # Paso 1: Descargar el código del repositorio
+      - [cite_start]name: Clonar repositorio # 
+        [cite_start]uses: actions/checkout@v3 #  Acción predefinida
+
+      # Paso 2: Configurar el entorno de Node.js
+      - [cite_start]name: Usar Node.js # 
+        [cite_start]uses: actions/setup-node@v3 # 
+        with:
+          [cite_start]node-version: '18' # 
+
+      # Paso 3: Instalar las dependencias del proyecto
+      - [cite_start]name: Instalar dependencias # 
+        [cite_start]run: npm install #  Ejecuta un comando de terminal
+
+      # Paso 4: Ejecutar las pruebas
+      - [cite_start]name: Ejecutar pruebas # 
+        [cite_start]run: npm test #
